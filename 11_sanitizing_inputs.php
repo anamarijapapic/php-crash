@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
   // filter_input() - Sanitize inputs
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
   $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  echo $name, $email;
 
   // FILTER_SANITIZE_STRING - Convert string to string with only alphanumeric, whitespace, and the following characters - _.:/
   // FILTER_SANITIZE_EMAIL - Convert string to a valid email address
@@ -39,7 +40,7 @@ if (isset($_POST['submit'])) {
   <input type="text" name="name">
 </div>
 <br>
-<?php echo $email; ?>
+<!-- <?php echo $email; ?> -->
 <div>
 <label>Email: </label>
   <input type="email" name="email">

@@ -25,10 +25,10 @@
 
 $name = 'Brad'; // String // Can be single or double quotes
 $age = 40; // Integer
-$hasKids = true; // Boolean
-$cashOnHand = 10.5; //Float
+$has_kids = true; // Boolean
+$cash_on_hand = 10.5; //Float
 
-var_dump($cashOnHand);
+var_dump($cash_on_hand);
 
 /* --- Adding variables to strings -- */
 
@@ -39,7 +39,6 @@ echo "$name is $age years old";
 echo "${name} is ${age} years old";
 
 // Concatenate Strings
-
 echo '<h3>' . $name . ' is ' . $age . ' years old</h3>';
 
 // Arithmetic Operators
@@ -48,6 +47,10 @@ echo 5 + 5;
 echo 10 - 6;
 echo 5 * 10;
 echo 10 / 2;
+echo 10 % 3;
+
+$x = '5' + '5';
+var_dump($x);
 
 // Constants - Cannot be changed
 define('HOST', 'localhost');

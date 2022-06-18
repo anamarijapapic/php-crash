@@ -7,6 +7,7 @@
  if(isset($_POST['submit'])) {
    // Check if file was uploaded
    if(!empty($_FILES['upload']['name'])) {
+    print_r($_FILES);
     $file_name = $_FILES['upload']['name'];
     $file_size = $_FILES['upload']['size'];
     $file_tmp = $_FILES['upload']['tmp_name'];

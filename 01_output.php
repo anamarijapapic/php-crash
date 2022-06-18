@@ -19,7 +19,7 @@ var_dump('Hello');
 var_dump([1, 2, 3]);
 
 // Escaping characters with a backslash
-echo "Is your name O\'reilly?";
+echo 'Is your name O\'reilly?';
 
 /* ------------ Comments ------------ */
 
@@ -29,7 +29,7 @@ echo "Is your name O\'reilly?";
       * This is a multi-line comment
       *
       * It can be used to comment out a block of code
-      */
+*/
 
 // If there is more content after the PHP, such as this file, you do need the ending tag. Otherwise you do not.
 ?>

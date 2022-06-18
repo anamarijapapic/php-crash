@@ -47,6 +47,9 @@ if (str_ends_with($string, 'ld')) {
 }
 
 // HTML Entities
+$string1 = '<script>alert(1)</script>';
+echo htmlspecialchars($string1);
+
 $string2 = '<h1>Hello World</h1>';
 echo htmlentities($string2);
 

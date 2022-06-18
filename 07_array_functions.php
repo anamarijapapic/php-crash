@@ -12,6 +12,7 @@ $fruits = ['apple', 'banana', 'orange'];
 echo count($fruits);
 
 // Search array
+var_dump(in_array('banana', $fruits));
 echo in_array('banana', $fruits);
 
 // Add to an array
@@ -19,11 +20,15 @@ $fruits[] = 'grape';
 array_push($fruits, 'mango', 'raspberry');
 array_unshift($fruits, 'kiwi'); // Adds to the beginning
 
+print_r($fruits);
+
 // Remove from array
 array_pop($fruits); // Removes last
 array_shift($fruits); // Removes first
 // Remove specific element
 unset($fruits[2]);
+
+print_r($fruits);
 
 // Split into chunks of 2
 $chunkedArray = array_chunk($fruits, 2);
@@ -42,6 +47,8 @@ $a = ['green', 'red', 'yellow'];
 $b = ['avocado', 'apple', 'banana'];
 $c = array_combine($a, $b);
 
+print_r($c);
+
 // Array of keys
 $keys = array_keys($c);
 
@@ -56,6 +63,8 @@ $numbers = range(1, 20);
 $newNumbers = array_map(function ($number) {
   return "Number ${number}";
 }, $numbers);
+
+print_r($newNumbers);
 
 // Filter array
 $lessThan10 = array_filter($numbers, fn($number) => $number < 10);
