@@ -16,7 +16,7 @@ $feedback = mysqli_fetch_all($result, MYSQLI_ASSOC);
   <?php foreach ($feedback as $item): ?>
     <div class="card my-3 w-75">
      <div class="card-body text-center">
-       <?php echo $item['body']; ?>
+       <?php echo "#${item['id']} - ${item['body']}"; ?>
        <div class="text-secondary mt-2">By <?php echo $item[
          'name'
        ]; ?> on <?php echo date_format(
