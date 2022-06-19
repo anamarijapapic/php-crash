@@ -9,7 +9,7 @@ $nameErr = $emailErr = $bodyErr = '';
 if (isset($_POST['submit'])) {
   // Validate name
   if (empty($_POST['name'])) {
-    $nameErr = 'Name is required';
+    $nameErr = 'Name is required.';
   } else {
     // $name = filter_var($_POST['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $name = filter_input(
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 
   // Validate email
   if (empty($_POST['email'])) {
-    $emailErr = 'Email is required';
+    $emailErr = 'Email is required.';
   } else {
     // $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
   // Validate body
   if (empty($_POST['body'])) {
-    $bodyErr = 'Body is required';
+    $bodyErr = 'Feedback is required.';
   } else {
     // $body = filter_var($_POST['body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_input(
@@ -65,19 +65,25 @@ if (isset($_POST['submit'])) {
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control <?php echo !$nameErr ?:
           'is-invalid'; ?>" id="name" name="name" placeholder="Enter your name" value="<?php echo $name; ?>">
-        <div id="validationServerFeedback" class="invalid-feedback">
-          Please provide a valid name.
+        <div class="invalid-feedback">
+          <?php echo $nameErr; ?>
         </div>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control <?php echo !$emailErr ?:
           'is-invalid'; ?>" id="email" name="email" placeholder="Enter your email" value="<?php echo $email; ?>">
+        <div class="invalid-feedback">
+          <?php echo $emailErr; ?>
+        </div>  
       </div>
       <div class="mb-3">
         <label for="body" class="form-label">Feedback</label>
         <textarea class="form-control <?php echo !$bodyErr ?:
           'is-invalid'; ?>" id="body" name="body" placeholder="Enter your feedback"><?php echo $body; ?></textarea>
+        <div class="invalid-feedback">
+          <?php echo $bodyErr; ?>
+        </div>  
       </div>
       <div class="mb-3">
         <input type="submit" name="submit" value="Send" class="btn btn-dark w-100">
