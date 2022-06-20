@@ -23,6 +23,15 @@ $feedback = mysqli_fetch_all($result, MYSQLI_ASSOC);
    date_create($item['date']),
    'g:ia \o\n l jS F Y'
  ); ?></div>
+      <?php echo 'Rating: ';
+      if ($item['rating']) {
+        for ($i = 0; $i < $item['rating']; $i++) {
+          echo '*';
+        }
+      } else {
+        echo 'no rating';
+      }
+      ?>
      </div>
    </div>
   <?php endforeach; ?>

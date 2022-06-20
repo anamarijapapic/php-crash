@@ -2,8 +2,8 @@
 
 <?php
 // Set vars to empty values
-$name = $email = $body = '';
-$nameErr = $emailErr = $bodyErr = '';
+$name = $rating = $email = $body = '';
+$nameErr = $ratingErr = $emailErr = $bodyErr = '';
 
 // Form submit
 if (isset($_POST['submit'])) {
@@ -17,6 +17,13 @@ if (isset($_POST['submit'])) {
       'name',
       FILTER_SANITIZE_FULL_SPECIAL_CHARS
     );
+  }
+
+  // Validate rating
+  if (!empty($_POST['rating']) && !($_POST['rating'] >= 1 && $_POST['rating'] <=5)) {
+    $ratingErr = 'Please enter rating values from 1 to 5, or leave empty.';
+  } else {
+    $rating = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT);
   }
 
   // Validate email
@@ -39,9 +46,9 @@ if (isset($_POST['submit'])) {
     );
   }
 
-  if (empty($nameErr) && empty($emailErr) && empty($bodyErr)) {
+  if (empty($nameErr) && empty($emailErr) && empty($bodyErr) && empty($ratingErr)) {
     // add to database
-    $sql = "INSERT INTO feedback (name, email, body) VALUES ('$name', '$email', '$body')";
+    $sql = "INSERT INTO feedback (name, email, body, rating) VALUES ('$name', '$email', '$body', '$rating')";
     if (mysqli_query($conn, $sql)) {
       // success
       header('Location: feedback.php');
@@ -67,6 +74,14 @@ if (isset($_POST['submit'])) {
           'is-invalid'; ?>" id="name" name="name" placeholder="Enter your name" value="<?php echo $name; ?>">
         <div class="invalid-feedback">
           <?php echo $nameErr; ?>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="number" class="form-control <?php echo !$ratingErr ?:
+          'is-invalid'; ?>" id="rating" name="rating" min="1" max="5" placeholder="Enter rating" value="<?php echo $rating; ?>">
+        <div class="invalid-feedback">
+          <?php echo $ratingErr; ?>
         </div>
       </div>
       <div class="mb-3">
