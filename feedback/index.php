@@ -2,8 +2,8 @@
 
 <?php
 // Set vars to empty values
-$name = $rating = $email = $body = '';
-$nameErr = $ratingErr = $emailErr = $bodyErr = '';
+$name = $rating = $url = $email = $body = '';
+$nameErr = $ratingErr = $urlErr = $emailErr = $bodyErr = '';
 
 // Form submit
 if (isset($_POST['submit'])) {
@@ -26,6 +26,13 @@ if (isset($_POST['submit'])) {
     $rating = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT);
   }
 
+  // Validate url
+  if (empty($_POST['url'])) {
+    $urlErr = 'Video URL is required.';
+  } else {
+    $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
+  }
+
   // Validate email
   if (empty($_POST['email'])) {
     $emailErr = 'Email is required.';
@@ -46,9 +53,9 @@ if (isset($_POST['submit'])) {
     );
   }
 
-  if (empty($nameErr) && empty($emailErr) && empty($bodyErr) && empty($ratingErr)) {
+  if (empty($nameErr) && empty($emailErr) && empty($bodyErr) && empty($ratingErr) && empty($urlErr) ) {
     // add to database
-    $sql = "INSERT INTO feedback (name, email, body, rating) VALUES ('$name', '$email', '$body', '$rating')";
+    $sql = "INSERT INTO feedback (name, email, body, rating, url) VALUES ('$name', '$email', '$body', '$rating', '$url')";
     if (mysqli_query($conn, $sql)) {
       // success
       header('Location: feedback.php');
@@ -82,6 +89,14 @@ if (isset($_POST['submit'])) {
           'is-invalid'; ?>" id="rating" name="rating" min="1" max="5" placeholder="Enter rating" value="<?php echo $rating; ?>">
         <div class="invalid-feedback">
           <?php echo $ratingErr; ?>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="url" class="form-label">Video URL</label>
+        <input type="text" class="form-control <?php echo !$urlErr ?:
+          'is-invalid'; ?>" id="url" name="url" placeholder="Enter video URL" value="<?php echo $url; ?>">
+        <div class="invalid-feedback">
+          <?php echo $urlErr; ?>
         </div>
       </div>
       <div class="mb-3">

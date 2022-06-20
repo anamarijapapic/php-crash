@@ -32,6 +32,8 @@ $feedback = mysqli_fetch_all($result, MYSQLI_ASSOC);
         echo 'no rating';
       }
       ?>
+      <br/>
+      <a href="<?php echo $item['url']; ?>" target="_blank"><?php echo $item['url']; ?></a>
      </div>
    </div>
   <?php endforeach; ?>
